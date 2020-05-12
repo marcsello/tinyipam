@@ -9,7 +9,7 @@ from model import db
 from utils import register_all_error_handlers
 
 # import views
-from views import HomeView
+from views import OverviewView, SubnetsView
 
 # import API views
 from api_views import SubnetView
@@ -40,7 +40,7 @@ with app.app_context():
 register_all_error_handlers(app)
 
 # register views
-for view in [HomeView]:
+for view in [OverviewView, SubnetsView]:
 	view.register(app, trailing_slash=False)
 
 
