@@ -9,10 +9,10 @@ from model import db
 from utils import register_all_error_handlers
 
 # import views
-from views import OverviewView, SubnetsView
+from views import OverviewView, SubnetView, DomainView
 
 # import API views
-from api_views import SubnetView
+from api_views import SubnetAPIView
 
 
 # create flask app
@@ -40,12 +40,12 @@ with app.app_context():
 register_all_error_handlers(app)
 
 # register views
-for view in [OverviewView, SubnetsView]:
+for view in [OverviewView, SubnetView, DomainView]:
 	view.register(app, trailing_slash=False)
 
 
 # register API views
-for view in [SubnetView]:
+for view in [SubnetAPIView]:
 	view.register(app, trailing_slash=False, route_prefix="/api/")
 
 # start debuggig if needed

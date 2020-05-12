@@ -8,3 +8,4 @@ SQLAlchemy-Utils
 SQLAlchemy
 marshmallow-sqlalchemy
 psycopg2-binary
+flask-login

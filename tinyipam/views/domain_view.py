@@ -2,7 +2,8 @@
 from flask import render_template
 from flask_classful import FlaskView
 
-class SubnetsView(FlaskView):
+
+class DomainView(FlaskView):
 
     def index(self):
-            return render_template('subnets.html')
+        return render_template('domains.html')

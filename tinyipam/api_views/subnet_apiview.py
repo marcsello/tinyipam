@@ -6,7 +6,9 @@ from utils import json_required, apikey_required
 from model import db
 
 
-class SubnetView(FlaskView):
+class SubnetAPIView(FlaskView):
+
+    route_base = 'subnet'
 
     decorators = [apikey_required]
 
