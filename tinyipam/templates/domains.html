@@ -2,6 +2,91 @@
 
 {% block page_title %}Domains{% endblock %}
 
+{% block dialogs %}
+<div class="modal fade" id="newDomainDialog" tabindex="-1" role="dialog" aria-labelledby="newDomainDialogTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newDomainDialogTitle">New subnet</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <form id="newSubnetForm" method="POST" action="{{ url_for('DomainView:index') }}">
+                        <div class="form-group row">
+                            <label class="col-3 col-form-label" for="name">Name</label>
+                            <div class="col-9">
+                                <input id="name" name="name" type="text" aria-describedby="nameHelpBlock"
+                                       required="required" class="form-control">
+                                <span id="nameHelpBlock"
+                                      class="form-text text-muted">TLD of your domain</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" form="newSubnetForm">Create domain</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
+
+
+<div class="row">
+    <div class="col-12 text-right">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newDomainDialog">
+            <i class="fa fa-plus"></i> New domain
+        </button>
+    </div>
+</div>
+
+
+<div class="row my-4">
+    <div class="col-12">
+
+
+        <table class="table table-hover ">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Utilization</th>
+                <th scope="col">Labels</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><a href="{{ url_for('DomainView:get', id=1) }}">local</a></td>
+                <td>50</td>
+                <td>INTERNAL</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><a href="{{ url_for('DomainView:get', id=2) }}">mysite.com</a></td>
+                <td>10</td>
+                <td>PUBLIC</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><a href="{{ url_for('DomainView:get', id=2) }}">example.com</a></td>
+                <td>10</td>
+                <td>PUBLIC</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>
 
 {% endblock %}

@@ -9,4 +9,4 @@ class SubnetView(FlaskView):
         return render_template('subnets.html')
 
     def get(self, id: int):
-        return render_template('subnets.html')
+        return render_template('subnet.html')

@@ -7,3 +7,6 @@ class DomainView(FlaskView):
 
     def index(self):
         return render_template('domains.html')
+
+    def get(self, id: int):
+        return render_template('domain.html')
