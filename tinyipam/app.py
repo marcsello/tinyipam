@@ -12,7 +12,7 @@ from utils import register_all_error_handlers
 from views import HomeView
 
 # import API views
-from api_views import HelloView
+from api_views import SubnetView
 
 
 # create flask app
@@ -45,7 +45,7 @@ for view in [HomeView]:
 
 
 # register API views
-for view in [HelloView]:
+for view in [SubnetView]:
 	view.register(app, trailing_slash=False, route_prefix="/api/")
 
 # start debuggig if needed

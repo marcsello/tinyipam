@@ -6,7 +6,7 @@ from utils import json_required, apikey_required
 from model import db
 
 
-class HelloView(FlaskView):
+class SubnetView(FlaskView):
 
     decorators = [apikey_required]
 
