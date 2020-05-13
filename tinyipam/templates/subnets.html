@@ -2,6 +2,11 @@
 
 {% block page_title %}Subnets{% endblock %}
 
+{% block includes %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='js/subnets.js') }}"></script>
+{% endblock %}
+
 {% block dialogs %}
 <div class="modal fade" id="newSubnetDialog" tabindex="-1" role="dialog" aria-labelledby="newSubnetDialogTitle"
      aria-hidden="true">

@@ -2,6 +2,11 @@
 
 {% block page_title %}Domains{% endblock %}
 
+{% block includes %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='js/domains.js') }}"></script>
+{% endblock %}
+
 {% block dialogs %}
 <div class="modal fade" id="newDomainDialog" tabindex="-1" role="dialog" aria-labelledby="newDomainDialogTitle"
      aria-hidden="true">
