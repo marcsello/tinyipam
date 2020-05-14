@@ -6,10 +6,10 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 # import stuff
 from model import db
 
-from utils import register_all_error_handlers
+from utils import register_all_error_handlers, login_manager
 
 # import views
-from views import OverviewView, SubnetView, DomainView
+from views import OverviewView, SubnetView, DomainView, LoginView
 
 # import API views
 from api_views import SubnetAPIView
@@ -32,6 +32,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # initialize stuff
 db.init_app(app)
+login_manager.init_app(app)
 
 with app.app_context():
 	db.create_all()
@@ -40,7 +41,7 @@ with app.app_context():
 register_all_error_handlers(app)
 
 # register views
-for view in [OverviewView, SubnetView, DomainView]:
+for view in [OverviewView, SubnetView, DomainView, LoginView]:
 	view.register(app, trailing_slash=False)
 
 

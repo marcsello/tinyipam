@@ -2,3 +2,4 @@
 from .overview_view import OverviewView
 from .subnet_view import SubnetView
 from .domain_view import DomainView
+from .login_view import LoginView
