@@ -69,24 +69,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td><a href="{{ url_for('DomainView:get', id=1) }}">local</a></td>
-                <td>50</td>
-                <td>INTERNAL</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td><a href="{{ url_for('DomainView:get', id=2) }}">mysite.com</a></td>
-                <td>10</td>
-                <td>PUBLIC</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td><a href="{{ url_for('DomainView:get', id=2) }}">example.com</a></td>
-                <td>10</td>
-                <td>PUBLIC</td>
-            </tr>
+                {% for domain in domains %}
+                <tr>
+                    <td><input type="checkbox" value="{{ domain.id }}"></td>
+                    <td><a href="{{ url_for('DomainView:get', id=domain.id) }}">domain.tld</a></td>
+                    <td>0</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
 

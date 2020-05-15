@@ -90,30 +90,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td><a href="{{ url_for('SubnetView:get', id=1) }}">SERVERS</a></td>
-                <td>10.0.0.0/16</td>
-                <td>2001:4c4e:16d0:2100::/64</td>
-                <td>50/65536</td>
-                <td>NAT</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td><a href="{{ url_for('SubnetView:get', id=2) }}">WORKPLACE</a></td>
-                <td>172.20.0.0/16</td>
-                <td>2001:4c4e:16d0:2100::/64</td>
-                <td>10/65536</td>
-                <td>PUBLIC</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td><a href="{{ url_for('SubnetView:get', id=3) }}">PUBLIC</a></td>
-                <td>172.20.0.0/16</td>
-                <td>2001:4c4e:16d0:2100::/64</td>
-                <td>10/65536</td>
-                <td>PUBLIC</td>
-            </tr>
+                {% for subnet in subnets %}
+                <tr>
+                    <td><input type="checkbox" value="{{ subnet.id }}"></td>
+                    <td><a href="{{ url_for('SubnetView:get', id=subnet.id) }}">{{ subnet.name }}</a></td>
+                    <td>{{ subnet.ipv4 }}</td>
+                    <td>{{ subnet.ipv6 }}</td>
+                    <td>0</td>
+                    <td></td>
+                </tr>
+               {% endfor %}
             </tbody>
         </table>
 
