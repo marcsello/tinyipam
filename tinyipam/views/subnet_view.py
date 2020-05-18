@@ -25,8 +25,6 @@ class SubnetView(FlaskView):
             flash(f"Validation error\n{str(e)}", "danger")
             return redirect(url_for("SubnetView:index"))
 
-
-
         db.session.add(s)
         db.session.commit()
 
