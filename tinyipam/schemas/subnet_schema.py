@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from ipaddress import IPv4Network, IPv6Network, AddressValueError
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, auto_field
-from marshmallow import validates_schema, fields
+from marshmallow import validates_schema
 from marshmallow.exceptions import ValidationError
 from model import Subnet
 
@@ -34,3 +34,4 @@ class SubnetSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = Subnet
         load_instance = True
+        dump_only = ["id", "created"]

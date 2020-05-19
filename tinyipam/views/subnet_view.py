@@ -8,6 +8,7 @@ from marshmallow.exceptions import ValidationError
 from model import db, Subnet
 from schemas import SubnetSchema
 
+
 class SubnetView(FlaskView):
     decorators = [login_required]
     subnet_schema = SubnetSchema(many=False, session=db.session)
