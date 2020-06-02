@@ -9,7 +9,7 @@ from model import db, User
 from utils import register_all_error_handlers, login_manager, hash_password
 
 # import views
-from views import OverviewView, SubnetView, DomainView, LoginView
+from views import OverviewView, SubnetView, DNSZoneView, LoginView
 
 # import API views
 from api_views import SubnetAPIView
@@ -51,7 +51,7 @@ def initial_setup():
 register_all_error_handlers(app)
 
 # register views
-for view in [OverviewView, SubnetView, DomainView, LoginView]:
+for view in [OverviewView, SubnetView, DNSZoneView, LoginView]:
     view.register(app, trailing_slash=False)
 
 # register API views

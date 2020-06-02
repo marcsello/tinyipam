@@ -3,7 +3,7 @@ from .db import db
 from sqlalchemy.sql import func
 
 
-class Domain(db.Model):
+class DNSZone(db.Model):
     id = db.Column(db.Integer, primary_key=True, auto_increment=True)
     tld = db.Column(db.String(1024), unique=True, nullable=False)
 

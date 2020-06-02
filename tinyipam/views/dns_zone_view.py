@@ -5,33 +5,33 @@ from flask_login import login_required
 
 from marshmallow.validate import ValidationError
 
-from model import db, Domain
-from schemas import DomainSchema
+from model import db, DNSZone
+from schemas import DNSZoneSchema
 
 
-class DomainView(FlaskView):
+class DNSZoneView(FlaskView):
     decorators = [login_required]
-    domain_schema = DomainSchema(many=False, session=db.session)
+    dns_zone_schema = DNSZoneSchema(many=False, session=db.session)
 
     def index(self):
-        domains = Domain.query.all()
-        return render_template('domains.html', domains=domains)
+        zones = DNSZone.query.all()
+        return render_template('dns_zones.html', zones=zones)
 
     def post(self):
         form_data = dict(request.form)
 
         try:
-            s = self.domain_schema.load(form_data, partial=True)
+            s = self.dns_zone_schema.load(form_data, partial=True)
         except (ValidationError, ValueError) as e:
             flash(f"Validation error\n{str(e)}", "danger")
-            return redirect(url_for("SubnetView:index"))
+            return redirect(url_for("DNSZoneView:index"))
 
         db.session.add(s)
         db.session.commit()
 
-        flash("Domain successfully created!", "success")
+        flash("Zone successfully created!", "success")
 
-        return redirect(url_for("DomainView:index"))
+        return redirect(url_for("DNSZoneView:index"))
 
     def get(self, id: int):
-        return render_template('domain.html')
+        return render_template('dns_zone.html')

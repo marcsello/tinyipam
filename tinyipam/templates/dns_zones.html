@@ -4,30 +4,30 @@
 
 {% block includes %}
     {{ super() }}
-    <script src="{{ url_for('static', filename='js/domains.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dns_zones.js') }}"></script>
 {% endblock %}
 
 {% block dialogs %}
-<div class="modal fade" id="newDomainDialog" tabindex="-1" role="dialog" aria-labelledby="newDomainDialogTitle"
+<div class="modal fade" id="newDNSZoneDialog" tabindex="-1" role="dialog" aria-labelledby="newDNSZoneDialogTitle"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newDomainDialogTitle">New subnet</h5>
+                <h5 class="modal-title" id="newDNSZoneDialogTitle">New DNS zone</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="container">
-                    <form id="newSubnetForm" method="POST" action="{{ url_for('DomainView:index') }}">
+                    <form id="newDNSZoneForm" method="POST" action="{{ url_for('DNSZoneView:post') }}">
                         <div class="form-group row">
-                            <label class="col-3 col-form-label" for="name">Name</label>
+                            <label class="col-3 col-form-label" for="tld">Name</label>
                             <div class="col-9">
-                                <input id="tld" name="tld" type="text" aria-describedby="nameHelpBlock"
+                                <input id="tld" name="tld" type="text" aria-describedby="tldHelpBlock"
                                        required="required" class="form-control">
-                                <span id="nameHelpBlock" class="form-text text-muted">
-                                    TLD of your domain
+                                <span id="tldHelpBlock" class="form-text text-muted">
+                                    TLD of the zone
                                 </span>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" form="newSubnetForm">Create domain</button>
+                <button type="submit" class="btn btn-primary" form="newDNSZoneForm">Create zone</button>
             </div>
         </div>
     </div>
@@ -48,8 +48,8 @@
 
 <div class="row">
     <div class="col-12 text-right">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newDomainDialog">
-            <i class="fa fa-plus"></i> New domain
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newDNSZoneDialog">
+            <i class="fa fa-plus"></i> New zone
         </button>
     </div>
 </div>
@@ -69,10 +69,10 @@
             </tr>
             </thead>
             <tbody>
-                {% for domain in domains %}
+                {% for zone in zones %}
                 <tr>
-                    <td><input type="checkbox" value="{{ domain.id }}"></td>
-                    <td><a href="{{ url_for('DomainView:get', id=domain.id) }}">{{ domain.tld }}</a></td>
+                    <td><input type="checkbox" value="{{ zone.id }}"></td>
+                    <td><a href="{{ url_for('DNSZoneView:get', id=zone.id) }}">{{ zone.tld }}</a></td>
                     <td>0</td>
                     <td></td>
                 </tr>

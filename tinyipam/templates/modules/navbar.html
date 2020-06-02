@@ -31,13 +31,13 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDomains" role="button" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDNS" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         DNS
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDomains">
-                        <a class="dropdown-item" href="{{ url_for('DomainView:index') }}"><i class="fa fa-list-alt"></i> Manage domains</a>
-                        <a class="dropdown-item" href="{{ url_for('DomainView:index', action='new') }}"><i class="fa fa-plus"></i> New domain</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDNS">
+                        <a class="dropdown-item" href="{{ url_for('DNSZoneView:index') }}"><i class="fa fa-list-alt"></i> Manage zones</a>
+                        <a class="dropdown-item" href="{{ url_for('DNSZoneView:index', action='new') }}"><i class="fa fa-plus"></i> New zone</a>
                     </div>
                 </li>
 
