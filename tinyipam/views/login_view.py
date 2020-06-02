@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from flask import render_template, redirect, request, flash, url_for, current_app
 from flask_classful import FlaskView
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from model import User
 from utils import hash_password_with_salt
 
@@ -9,9 +9,14 @@ from utils import hash_password_with_salt
 class LoginView(FlaskView):
 
     def index(self):
+        if current_user.is_authenticated:
+            return redirect(url_for("OverviewView:index"))
+
         return render_template('login.html')
 
     def post(self):
+        if current_user.is_authenticated:
+            return redirect(url_for("OverviewView:index"))
 
         provided_credentials = dict(request.form)
 
@@ -34,7 +39,6 @@ class LoginView(FlaskView):
         else:
             flash("Username or password incorrect.", "danger")
             return redirect(url_for("LoginView:index"))
-
 
     @login_required
     def logout(self):
