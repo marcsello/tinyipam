@@ -64,7 +64,7 @@
             <tr>
                 <th scope="col"></th>
                 <th scope="col">Name</th>
-                <th scope="col">Utilization</th>
+                <th scope="col">Record count</th>
                 <th scope="col">Labels</th>
             </tr>
             </thead>
@@ -73,7 +73,7 @@
                 <tr>
                     <td><input type="checkbox" value="{{ zone.id }}"></td>
                     <td><a href="{{ url_for('DNSZoneView:get', id=zone.id) }}">{{ zone.tld }}</a></td>
-                    <td>0</td>
+                    <td>{{ zone.records|length }}</td>
                     <td></td>
                 </tr>
                 {% endfor %}

@@ -34,4 +34,5 @@ class DNSZoneView(FlaskView):
         return redirect(url_for("DNSZoneView:index"))
 
     def get(self, id: int):
-        return render_template('dns_zone.html')
+        zone = DNSZone.query.get(id)
+        return render_template('dns_zone.html', zone=zone)

@@ -1,9 +1,76 @@
 {% extends "modules/base.html" %}
 
-{% block page_title %}Domain - local{% endblock %}
+{% block page_title %}Domain - {{ zone.tld }}{% endblock %}
 
 {% block dialogs %}{% endblock %}
 
 {% block content %}
+
+<div class="row">
+  <div class="col-12">
+
+    <div class="card border-dark mb-3">
+      <div class="card-header">SOA record</div>
+      <div class="card-body text-dark">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere leo vel tellus molestie, sit amet malesuada lacus elementum. Nulla eget felis tempus lacus pulvinar varius. Nulla et leo ut purus tincidunt venenatis. Nunc congue tortor quis massa lobortis bibendum. Pellentesque enim justo, sollicitudin fringilla elit at, dictum sodales arcu. Nunc non erat vitae risus auctor lacinia et id turpis. Phasellus mollis pretium consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
+            </div>
+            <div class="col-12 col-md-6">
+                Cras quam tellus, hendrerit sed commodo vel, tempor ut eros. Proin facilisis tincidunt risus. Suspendisse velit erat, accumsan suscipit pretium at, congue non diam. Fusce lobortis metus vel accumsan maximus. Quisque sodales est pellentesque eros rhoncus, quis dignissim odio molestie. Etiam sit amet nisi finibus, placerat sem vulputate, vulputate ipsum. Donec eleifend, ante nec fermentum congue, velit metus posuere ex, in rhoncus orci leo sed nisl. Praesent vitae purus faucibus ligula luctus mattis eget sed tortor. Phasellus luctus sem erat, vitae pretium risus ornare eget. Vestibulum scelerisque ligula sed dolor efficitur pretium a id leo. Nunc eget mauris aliquam arcu pretium porttitor at a quam. Ut pellentesque maximus hendrerit. Vivamus non turpis sit amet diam ultrices tincidunt.
+            </div>
+        </div>
+      </div>
+     </div>
+
+  </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 text-right">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newDNSRecordDialog">
+            <i class="fa fa-plus"></i> New record
+        </button>
+    </div>
+</div>
+
+<div class="row my-4">
+    <div class="col-12">
+
+
+        <table class="table table-hover ">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Value</th>
+                <th scope="col">Address</th>
+                <th scope="col">Labels</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for record in zone.records %}
+                <tr>
+                    <td><input type="checkbox" value="{{ record.id }}"></td>
+                    <td><a href="#">{{ record.name }}</a></td>
+                    <td>{{ record.type.name }}</td>
+                    <td>{{ record.value }}</td>
+                    <td>
+                        {% if record.address %}
+                            <td><a href="{{ url_for('SubnetView:get', id=record.address.subnet.id) }}">{{ record.address.name }}</a></td>
+                        {% endif %}
+                    </td>
+                    <td></td>
+                </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>
 
 {% endblock %}

@@ -34,4 +34,5 @@ class SubnetView(FlaskView):
         return redirect(url_for("SubnetView:index"))
 
     def get(self, id: int):
-        return render_template('subnet.html')
+        subnet = Subnet.query.get(id)
+        return render_template('subnet.html', subnet=subnet)

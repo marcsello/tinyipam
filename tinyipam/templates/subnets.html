@@ -96,7 +96,16 @@
                     <td><a href="{{ url_for('SubnetView:get', id=subnet.id) }}">{{ subnet.name }}</a></td>
                     <td>{{ subnet.ipv4 }}</td>
                     <td>{{ subnet.ipv6 }}</td>
-                    <td>0</td>
+                    <td>
+                    {{ subnet.addresses|length }} /
+                        {% if not subnet.ipv4 -%}
+                            {{ subnet.ipv6.num_addresses }}
+                        {%- elif not subnet.ipv6 -%}
+                            {{ subnet.ipv4.num_addresses-2 }}
+                        {%- else -%}
+                            {{ [subnet.ipv4.num_addresses-2, subnet.ipv6.num_addresses]|min }}
+                        {%- endif -%}
+                    </td>
                     <td></td>
                 </tr>
                {% endfor %}

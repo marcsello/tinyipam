@@ -1,9 +1,63 @@
 {% extends "modules/base.html" %}
 
-{% block page_title %}Subnet - 192.168.100.0/24{% endblock %}
+{% block page_title %}Subnet - {{ subnet.name }}{% endblock %}
 
 {% block dialogs %}{% endblock %}
 
 {% block content %}
+<div class="row">
+    <div class="col-6">
+
+        <h2 class="text-secondary h3">{{ subnet.ipv4 or '' }}{%- if subnet.ipv4 and subnet.ipv6 %} | {% endif -%}{{ subnet.ipv6 or '' }}</h2>
+
+
+    </div>
+    <div class="col-6 text-right">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newAddressDialog">
+            <i class="fa fa-plus"></i> New Address
+        </button>
+    </div>
+</div>
+
+
+<div class="row my-4">
+    <div class="col-12">
+
+
+        <table class="table table-hover ">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">IPv4</th>
+                <th scope="col">IPv6</th>
+                <th scope="col">DNS</th>
+                <th scope="col">Labels</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for address in subnet.addresses %}
+                <tr>
+                    <td><input type="checkbox" value="{{ address.id }}"></td>
+                    <td><a href="#">{{ address.name }}</a></td>
+                    <td>{{ address.ipv4 }}</td>
+                    <td>{{ address.ipv6 }}</td>
+                    <td>
+                        {% for record in address.records %}
+                            {{ record.type.name }}
+                            {% if not loop.last %}|{% endif %}
+                        {% endfor %}
+                    </td>
+                    <td></td>
+                </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>
+
 
 {% endblock %}
