@@ -19,20 +19,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="container">
-                    <form id="newDNSZoneForm" method="POST" action="{{ url_for('DNSZoneView:post') }}">
-                        <div class="form-group row">
-                            <label class="col-3 col-form-label" for="tld">Name</label>
-                            <div class="col-9">
-                                <input id="tld" name="tld" type="text" aria-describedby="tldHelpBlock"
-                                       required="required" class="form-control">
-                                <span id="tldHelpBlock" class="form-text text-muted">
-                                    TLD of the zone
-                                </span>
-                            </div>
+                <form id="newDNSZoneForm" method="POST" action="{{ url_for('DNSZoneView:post') }}">
+                    <div class="form-group row">
+                        <label class="col-3 col-form-label" for="tld">Name</label>
+                        <div class="col-9">
+                            <input id="tld" name="tld" type="text" aria-describedby="tldHelpBlock"
+                                   required="required" class="form-control">
+                            <span id="tldHelpBlock" class="form-text text-muted">
+                                TLD of the zone
+                            </span>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

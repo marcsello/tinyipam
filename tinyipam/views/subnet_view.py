@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from flask import render_template, url_for, redirect, request, flash
+from flask import render_template, url_for, redirect, request, flash, jsonify
 from flask_classful import FlaskView
 from flask_login import login_required
 
@@ -36,3 +36,7 @@ class SubnetView(FlaskView):
     def get(self, id: int):
         subnet = Subnet.query.get(id)
         return render_template('subnet.html', subnet=subnet)
+
+    def post(self, id: int):
+        data = dict(request.values)
+        return jsonify(data)

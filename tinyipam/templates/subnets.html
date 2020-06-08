@@ -19,40 +19,38 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="container">
-                    <form id="newSubnetForm" method="POST" action="{{ url_for('SubnetView:index') }}">
-                        <div class="form-group row">
-                            <label class="col-3 col-form-label" for="name">Name</label>
-                            <div class="col-9">
-                                <input id="name" name="name" type="text" aria-describedby="nameHelpBlock"
-                                       required="required" class="form-control">
-                                <span id="nameHelpBlock" class="form-text text-muted">
-                                    Some name that describes this subnet
-                                </span>
-                            </div>
+                <form id="newSubnetForm" method="POST" action="{{ url_for('SubnetView:index') }}">
+                    <div class="form-group row">
+                        <label class="col-3 col-form-label" for="name">Name</label>
+                        <div class="col-9">
+                            <input id="name" name="name" type="text" aria-describedby="nameHelpBlock"
+                                   required="required" class="form-control">
+                            <span id="nameHelpBlock" class="form-text text-muted">
+                                Some name that describes this subnet
+                            </span>
                         </div>
-                        <div class="form-group row">
-                            <label for="ipv4" class="col-3 col-form-label">IPv4</label>
-                            <div class="col-9">
-                                <input id="ipv4" name="ipv4" type="text" aria-describedby="text1HelpBlock"
-                                       class="form-control">
-                                <span id="text1HelpBlock" class="form-text text-muted">
-                                    IPv4 CIDR address of the subnet. (optional but at least one must be provided)
-                                </span>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ipv4" class="col-3 col-form-label">IPv4</label>
+                        <div class="col-9">
+                            <input id="ipv4" name="ipv4" type="text" aria-describedby="text1HelpBlock"
+                                   class="form-control">
+                            <span id="text1HelpBlock" class="form-text text-muted">
+                                IPv4 CIDR address of the subnet. (optional but at least one must be provided)
+                            </span>
                         </div>
-                        <div class="form-group row">
-                            <label for="ipv6" class="col-3 col-form-label">IPv6</label>
-                            <div class="col-9">
-                                <input id="ipv6" name="ipv6" type="text" aria-describedby="textHelpBlock"
-                                       class="form-control">
-                                <span id="textHelpBlock" class="form-text text-muted">
-                                    IPv6 CIDR address of the subnet. (optional but at least one must be provided)
-                                </span>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ipv6" class="col-3 col-form-label">IPv6</label>
+                        <div class="col-9">
+                            <input id="ipv6" name="ipv6" type="text" aria-describedby="textHelpBlock"
+                                   class="form-control">
+                            <span id="textHelpBlock" class="form-text text-muted">
+                                IPv6 CIDR address of the subnet. (optional but at least one must be provided)
+                            </span>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -94,8 +92,8 @@
                 <tr>
                     <td><input type="checkbox" value="{{ subnet.id }}"></td>
                     <td><a href="{{ url_for('SubnetView:get', id=subnet.id) }}">{{ subnet.name }}</a></td>
-                    <td>{{ subnet.ipv4 }}</td>
-                    <td>{{ subnet.ipv6 }}</td>
+                    <td>{{ subnet.ipv4 or '' }}</td>
+                    <td>{{ subnet.ipv6 or '' }}</td>
                     <td>
                     {{ subnet.addresses|length }} /
                         {% if not subnet.ipv4 -%}
